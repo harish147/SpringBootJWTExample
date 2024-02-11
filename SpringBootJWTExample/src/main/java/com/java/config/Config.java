@@ -38,6 +38,8 @@ public class Config implements WebMvcConfigurer {
 			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 			.authorizeHttpRequests((httpRequest) -> 
 				httpRequest
+					.requestMatchers(HttpMethod.POST, "/userrole").permitAll()
+					.requestMatchers(HttpMethod.POST, "/user").permitAll()
 					.requestMatchers(HttpMethod.POST,"/auth/generatetoken").permitAll()
 					.anyRequest().authenticated()
 			);
